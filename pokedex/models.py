@@ -19,7 +19,7 @@ class Pokemon(models.Model):
         ('P', 'Planta'),
         ('E', 'Eléctrico')
     }
-    type = models.CharField(max_length=30, null=False)
+    type = models.CharField(max_length=30, choices= POKEMON_TYPES, null=False)
     weight = models.IntegerField(null=False, default=1)
     height = models.IntegerField(null=False, default=1)
     trainer = models.ForeignKey(Trainer, on_delete=models.CASCADE)
