@@ -1,32 +1,79 @@
 {% extends "base.html" %}
-{% block title %}POKEDEX{% endblock title %}
+{% block title %}Pokedex{% endblock title %}
 {% block content %}
-    <div class="card-group">
-        {% for pokemon in pokemons %}
-            <div class="card">
-                <img src="{{ pokemon.picture.url }}" alt="" class="img-thumbnail" style="background-color:#f5f5f5; background-opacity: 0.2">
-                <div class="card-body"></div>
-                <h4 class="card-title">{{ pokemon }}</h4>
-                <p class="card-text">
-                    Entrenador: {{ pokemon.trainer }} <br>
-                    Peso: {{ pokemon.weight }}
-                </p>
-                <p>
-                    <a href="pokemon/{{ pokemon.id }}" class="btn btn-primary" >
-                        <i class="fa-solid fa-eye"></i>
-                    </a>
-                    {%if user.is_authenticated%}
-                    <a href="edit_pokemon/{{ pokemon.id }}" class="btn btn-primary" >
-                        <i class="fa-solid fa-pencil"></i>
-                    </a>
-                    {% endif %}
-                    {%if user.is_authenticated%}
-                    <a href="delete_pokemon/{{ pokemon.id }}" class="btn btn-danger" >
-                        <i class="fa-solid fa-trash-can"></i>
-                    </a>
-                    {% endif %}
-                </p>
+<div class="shadow p-3 mb-5 bg-danger rounded mt-5">
+    <h3>Pokémon</h3>
+</div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    {% for pokemon in pokemons %}
+    <div class="col">
+        <div class="card bg-warning mb-4 p-3" style="max-width: 50vh; color: black">
+            <div class="d-flex justify-content-center align-items-center">
+                <img src="{{ pokemon.picture.url }}" alt="{{ pokemon }}" class="img-thumbnail" style="background-color:white; object-fit:cover; aspect-ratio: 1 / 1">
             </div>
-        {% endfor %}
+            <div class="card-body mt-n2"></div>
+            <h4 class="card-title">{{ pokemon }}</h4>
+            <hr class="border border-dark border-2">
+            <p class="card-text">
+                <strong>Entrenador:</strong> {{ pokemon.trainer }} <br>
+                <strong>Peso:</strong> {{ pokemon.weight }}
+            </p>
+            <div class="btn-group" role="group">
+                <a href="pokemon/{{ pokemon.id }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="Detalles">
+                    <i class="fa-solid fa-eye"></i>
+                </a>
+                {%if user.is_authenticated%}
+                <a href="edit_pokemon/{{ pokemon.id }}" class="btn btn-primary" >
+                    <i class="fa-solid fa-pencil"></i>
+                </a>
+                {% endif %}
+                {%if user.is_authenticated%}
+                <a href="delete_pokemon/{{ pokemon.id }}" class="btn btn-danger" >
+                    <i class="fa-solid fa-trash-can"></i>
+                </a>
+                {% endif %}
+            </div>
+        </div>
     </div>
+    {% endfor %}
+</div>
+<div class="shadow p-3 mb-5 bg-danger rounded mt-4">
+    <h3>Entrenadores</h3>
+</div>
+<div class="row row-cols-1 row-cols-md-2 g-4">
+    {% for trainer in trainers %}
+    <div class="col">
+        <div class="card mb-3 p-3 bg-info" style="max-width: 75vh; color:black; overflow:hidden">
+            <div class="row g-0">
+                <div class="col-md-4 d-flex justify-content-center align-items-center">
+                    <img src="{{ trainer.picture.url }}" class="img-thumbnail" style="background-color:white; object-fit:cover; aspect-ratio: 1 / 1; object-position: 50% 0;" alt="{{ trainer }}">
+                </div>
+                <div class="col-md-8">
+                    <h4 class="card-title mt-2">{{ trainer }}</h4>
+                    <hr class="border border-dark border-2">
+                    <p class="card-text">
+                        <strong>Edad:</strong> {{ trainer.age }} <br>
+                        <strong>Nivel:</strong> {{ trainer.level }}
+                    </p>
+                    <div class="btn-group" role="group" style="width: 95%">
+                        <a href="trainer/{{ trainer.id }}" class="btn btn-primary" data-bs-toggle="tooltip" title="Detalles">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        {%if user.is_authenticated%}
+                        <a href="edit_trainer/{{ trainer.id }}" class="btn btn-primary" data-bs-toggle="tooltip" title="Editar" >
+                            <i class="fa-solid fa-pencil"></i>
+                        </a>
+                        {% endif %}
+                        {%if user.is_authenticated%}
+                        <a href="delete_trainer/{{ trainer.id }}" class="btn btn-danger" data-bs-toggle="tooltip" title="Eliminar">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>  
+    {% endfor %}
+</div>
 {% endblock content %}

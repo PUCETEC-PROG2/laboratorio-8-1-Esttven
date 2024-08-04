@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Entrenador{% endblock title %}
+{% block content %}
+<div class="card bg-danger mt-4 mb-4 p-2" style="width: 23rem; color: black; display: block; margin-left: auto; margin-right: auto;">
+    <img src="{{ trainer.picture.url }}" class="card-img-top" alt=" {{ trainer }} " style="border-radius: 4px; background-color: white; object-fit:cover; aspect-ratio: 1 / 1; object-position: 50% 0;">
+    <div class="card-body">
+    <h4 class="card-title" style="color:white">Características</h4>
+    </div>
+    <ul class="list-group list-group-flush" style="border-radius: 4px">
+    <li class="list-group-item bg-warning"><strong>Nombre:</strong> {{ trainer.first_name }}</li>
+    <li class="list-group-item bg-warning"><strong>Apellido:</strong> {{ trainer.last_name }}</li>
+    <li class="list-group-item bg-warning"><strong>Fecha de nacimiento:</strong> {{ trainer.birth_date }}</li>
+    <li class="list-group-item bg-warning"><strong>Nivel:</strong> {{ trainer.level }}</li>
+    </ul>
+</div>
+{% endblock content %}

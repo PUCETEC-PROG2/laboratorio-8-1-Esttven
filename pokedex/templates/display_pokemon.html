@@ -1,11 +1,17 @@
 {% extends "base.html" %}
-{% block title %}POKEMONS{% endblock title %}
+{% block title %}Pokémon{% endblock title %}
 {% block content %}
-<p>Has elegido el pokemon: <strong>{{ pokemon | capfirst }}</strong></p>
-<h3>Características:</h3>
-    <ul>
-        <li>Tipo: {{ pokemon.type }}</li>
-        <li>Peso: {{ pokemon.weight }}</li>
-        <li>Altura: {{ pokemon.height }}</li>
+<div class="card bg-danger mt-4 mb-4 p-2" style="width: 23rem; color: black; display: block; margin-left: auto; margin-right: auto;">
+    <img src="{{ pokemon.picture.url }}" class="card-img-top" alt=" {{ pokemon }} " style="border-radius: 4px; background-color: white; object-fit:cover; aspect-ratio: 1 / 1; object-position: 50% 0;">
+    <div class="card-body">
+    <h4 class="card-title" style="color:white">Características</h4>
+    </div>
+    <ul class="list-group list-group-flush" style="border-radius: 4px">
+    <li class="list-group-item bg-warning"><strong>Nombre:</strong> {{ pokemon.name }}</li>
+    <li class="list-group-item bg-warning"><strong>Tipo:</strong> {{ pokemon.type }}</li>
+    <li class="list-group-item bg-warning"><strong>Peso:</strong> {{ pokemon.weight }}</li>
+    <li class="list-group-item bg-warning"><strong>Altura:</strong> {{ pokemon.height }}</li>
+    <li class="list-group-item bg-warning"><strong>Entrenador:</strong> {{ pokemon.trainer }}</li>
     </ul>
+</div>
 {% endblock content %}
